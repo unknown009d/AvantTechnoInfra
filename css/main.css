@@ -1,0 +1,89 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*:focus,
+*:focus-visible,
+*:focus-within {
+    outline: none;
+}
+
+* {
+    scroll-behavior: smooth;
+}
+
+.linebnf {
+    /* width: 70%; */
+    margin: .7em auto;
+    overflow: hidden;
+    text-align: center;
+    font-weight: 300;
+    color: #ffffff;
+}
+
+.linebnf:before,
+.linebnf:after {
+    content: "";
+    display: inline-block;
+    width: 50%;
+    margin: 0 .5em 0 -55%;
+    vertical-align: middle;
+    border-bottom: 1px solid;
+}
+
+.linebnf:after {
+    margin: 0 -55% 0 .5em;
+}
+
+.linebnf span {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+@media only screen and (max-width: 420px) {
+    .linebnf::after,
+    .linebnf::before
+    {
+        display: none;
+    }
+}
+
+.menu-items{
+    @apply relative hover:bg-white/20 p-3 md:p-3 md:px-5 rounded-2xl;
+    transition: background-color 200ms ease-out;
+    user-select: none;
+}
+
+.menu-items::after,
+.mactive::after {
+    content: '';
+    display: block;
+    background-color: #fff;
+    width: 4px;
+    height: 4px;
+    border-radius: 100px;
+    position: absolute;
+    bottom: 6px;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: opacity 200ms ease-out;
+}
+
+.menu-items:hover::after{
+    opacity: 1;
+}
+
+.mactive{
+    @apply after:opacity-100 after:w-1/4;
+}
+
+.btn{
+    /* @apply flex gap-2 p-4 px-6 items-center justify-between rounded-full relative hover:after:bg-white/20; */
+    @apply hover:brightness-95 focus:outline-none focus:ring-4 focus:ring-white/30 rounded-full px-5 py-3 sm:px-6 sm:py-4 text-center flex gap-2 justify-center items-center;
+    transition: background-color 200ms ease-out, filter 200ms ease-out;
+}
+
+.btn-sec{
+    @apply hover:bg-white/20;
+}
