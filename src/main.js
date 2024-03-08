@@ -50,3 +50,21 @@ const searchPage = (parameters) => {
     console.log(parameters);
     window.location.href = "search.html?s=" + encodeURIComponent(inp.value);
 };
+
+let lastScrollTop = 0;
+
+window.addEventListener('scroll', function () {
+    let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    if (scrollTop > 50) {
+        if (scrollTop > lastScrollTop) {
+            if (window.innerWidth >= 640) {
+                header.style.transform = "translateY(-120px)";
+            }
+            // header.classList.remove("top-0");
+        } else {
+            header.style.transform = "translateY(0px)";
+            // header.classList.add("top-0");
+        }
+    }
+    lastScrollTop = scrollTop;
+}, false);

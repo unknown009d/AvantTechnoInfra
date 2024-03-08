@@ -41,14 +41,14 @@
 }
 
 @media only screen and (max-width: 420px) {
+
     .linebnf::after,
-    .linebnf::before
-    {
+    .linebnf::before {
         display: none;
     }
 }
 
-.menu-items{
+.menu-items {
     @apply relative hover:bg-white/20 p-3 md:p-3 md:px-5 rounded-2xl;
     transition: background-color 200ms ease-out;
     user-select: none;
@@ -70,20 +70,32 @@
     transition: opacity 200ms ease-out;
 }
 
-.menu-items:hover::after{
+.menu-items:hover::after {
     opacity: 1;
 }
 
-.mactive{
+.mactive {
     @apply after:opacity-100 after:w-1/4;
 }
 
-.btn{
+.btn {
     /* @apply flex gap-2 p-4 px-6 items-center justify-between rounded-full relative hover:after:bg-white/20; */
     @apply hover:brightness-95 focus:outline-none focus:ring-4 focus:ring-white/30 rounded-full px-5 py-3 sm:px-6 sm:py-4 text-center flex gap-2 justify-center items-center;
     transition: background-color 200ms ease-out, filter 200ms ease-out;
 }
 
-.btn-sec{
+.btn-sec {
     @apply hover:bg-white/20;
+}
+
+header {
+    transition: transform 400ms ease-out, background-color 400ms ease-out;
+}
+
+.txt{
+    @apply border-2 border-gray-300 hover:border-gray-400 focus:border-pmblue py-3.5 px-5 rounded-lg;
+}
+
+.activeTab{
+    @apply bg-pmblue text-white;
 }
