@@ -21,7 +21,13 @@ img.onload = () => {
         headerScrollBG(rgb);
     });
     headerScrollBG(rgb);
+    colorSchemeChange(rgb);
 };
+
+const colorSchemeChange = (rgb) => {
+    document.getElementById("btnLandingScreen").style.color = rgb;
+    Array.from(document.getElementById("btnLandingScreen").children[0].children[0].children).forEach(e => e.setAttribute("stroke", rgb));
+}
 
 const header = document.querySelector('.scroll-header');
 const headerScrollBG = (rgb) => {
@@ -68,3 +74,21 @@ window.addEventListener('scroll', function () {
     }
     lastScrollTop = scrollTop;
 }, false);
+
+window.addEventListener('scroll', function () {
+    var scrollPosition = window.scrollY;
+    var opacity = 1 - (scrollPosition / 400); // Adjust 500 to control the rate of fading
+
+    var introElement = document.querySelector('.intro');
+    introElement.style.opacity = opacity;
+});
+
+const removeLoading = () => {
+    const loadingScreen = document.getElementById('loading-screen');
+    loadingScreen.style.display = 'none';
+}
+
+window.addEventListener('load', function () {
+    removeLoading();
+});
+

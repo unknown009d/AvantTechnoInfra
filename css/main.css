@@ -92,10 +92,69 @@ header {
     transition: transform 400ms ease-out, background-color 400ms ease-out;
 }
 
-.txt{
+.txt {
     @apply border-2 border-gray-300 hover:border-gray-400 focus:border-pmblue py-3.5 px-5 rounded-lg;
 }
 
-.activeTab{
+.activeTab {
     @apply bg-pmblue text-white;
+}
+
+
+/* HTML: <div class="loader"></div> */
+.loader {
+    color: #0076BF;
+    width: 6px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    animation:
+        l37-1 .75s infinite linear alternate,
+        l37-2 1.5s infinite linear;
+    margin-top: 1rem;
+}
+
+@keyframes l37-1 {
+
+    0%,
+    20% {
+        box-shadow: 30px 0 0 3px, 10px 0 0 3px, -10px 0 0 3px, -30px 0 0 3px
+    }
+
+    60%,
+    100% {
+        box-shadow: 12px 0 0 3px, 14px 0 0 6px, -14px 0 0 6px, -12px 0 0 3px
+    }
+}
+
+@keyframes l37-2 {
+
+    0%,
+    25% {
+        transform: rotate(0)
+    }
+
+    50%,
+    100% {
+        transform: rotate(.5turn)
+    }
+}
+
+.removeLoading {
+    opacity: 0;
+    animation: opaMore 800ms ease-out 6s forwards;
+
+}
+
+@keyframes opaMore {
+    to {
+        opacity: 1;
+    }
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: #ffffff;
 }

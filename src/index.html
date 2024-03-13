@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="tailwind.css">
     <style>
         .bgimage {
-            background: url('resources/BG.png') center/cover no-repeat local;
+            background: url('resources/BG.jpg') center/cover no-repeat fixed;
             height: 90vh;
             max-height: 800px;
             min-height: 600px;
@@ -35,6 +35,22 @@
 </head>
 
 <body>
+    <section id="loading-screen"
+        class="fixed top-0 bottom-0 left-0 right-0 w-full h-full z-50 bg-white flex flex-col gap-2 justify-between items-center p-5">
+        <div></div>
+        <div class="flex flex-col gap-4 items-center justify-center text-center">
+            <img src="resources/Logo.png" width="120px" alt="AvantTechnoInfra">
+            <!-- <h2 class="opacity-80">...Loading...</h2> -->
+            <div class="loader"></div>
+        </div>
+        <div class="removeLoading">
+            <button class="text-sm italic text-neutral-900" onclick="removeLoading()" id="btnRemoveLoad">
+                Page is not yet loaded properly. Do you want to skip the
+                <span class="underline">loading screen</span>?
+            </button>
+        </div>
+    </section>
+
     <!-- <div class=""> -->
     <!-- Menu Header Items -->
     <header
@@ -43,7 +59,7 @@
             <nav
                 class="py-5 text-white h-full flex justify-between items-center gap-8 sm:gap-4 flex-col sm:py-2 sm:bg-transparent sm:flex-row">
                 <div class="hidden md:block">
-                    <a href="#" class="text-sky-500 text-2xl font-bold">
+                    <a href="/" class="text-sky-500 text-2xl font-bold">
                         <img src="resources/LogoFull_light.png" width="80px" alt="Avant TechnoInfra">
                     </a>
                 </div>
@@ -85,6 +101,7 @@
             </nav>
         </div>
     </header>
+
     <button onclick="showMenu(this)" type="button" title="Show Menu"
         class="fixed bottom-0 right-0 m-5 p-4 bg-white shadow rounded-2xl z-20 sm:hidden focus:ring-4 focus:ring-white/30">
         <div class="icclose hidden">
@@ -100,31 +117,28 @@
             </svg>
         </div>
     </button>
+
     <!-- Landing Page -->
-    <section class="bg-sky-500 w-full bgimage flex justify-center items-center py-20">
-        <div class="container mx-auto flex flex-col items-center justify-center px-5 xss:px-10 sm:block">
+    <section class="bg-sky-500 w-full bgimage flex justify-center items-center py-20 text-white">
+        <div class="container mx-auto flex flex-col items-center justify-center px-5 xss:px-10 sm:block intro">
             <div class="text-sky-500 text-2xl font-bold mb-5 mt-5 md:hidden">
                 <img src="resources/LogoFull_light.png" width="120px" alt="Avant TechnoInfra">
             </div>
             <div class="w-fit">
-                <h1 class="text-3xl text-center sm:text-left sm:text-5xl font-extrabold text-white">AVANT
-                    TECHNOINFRA
-                </h1>
-                <h6 class="text-xs sm:text-base text-white linebnf tracking-widest">Serving Technology & Infra
-                    Solutions
-                </h6>
+                <h1 class="text-3xl text-center sm:text-left sm:text-5xl font-extrabold ">AVANT TECHNOINFRA</h1>
+                <h6 class="text-xs sm:text-base linebnf tracking-widest">Serving Technology & InfraSolutions</h6>
             </div>
 
             <p
-                class="text-white text-sm text-center xs:w-10/12 sm:text-base sm:text-left sm:p-0 sm:leading-6 md:w-5/12 mt-8 font-light">
+                class="text-sm text-center xs:w-10/12 sm:text-base sm:text-left sm:p-0 sm:leading-6 md:w-5/12 mt-8 font-light">
                 We are a technology support partner and a service provider in the field of Infrastructure, IT, ITES,
                 ELV
                 and security systems domain also we have has the necessary domain expertise, capabilities, in-depth
                 experience and resources to provide functional and operational requirements of its clients.
             </p>
 
-            <div class="mt-10 flex flex-col sm:flex-row  gap-4 text-white">
-                <button type="button" style="color: #3F98DB;" title="Make an appointment"
+            <div class="mt-10 flex flex-col sm:flex-row gap-4">
+                <button type="button" style="color: #3F98DB;" id="btnLandingScreen" title="Make an appointment"
                     class="bg-white btn text-sm sm:text-base">
                     Make an appointment
                     <span>
@@ -212,9 +226,96 @@
 
     </section>
 
+    <section class="mb-24 mt-10 lg:-mt-20">
+        <div
+            class="container mx-auto text-center sm:text-left flex flex-col lg:flex-row gap-10 lg:gap-48 items-center justify-between">
+            <div>
+                <div>
+                    <p class="text-xs sm:text-sm opacity-50">- WHAT WE PROVIDE -</p>
+                </div>
+
+                <div class="flex flex-col sm:flex-row gap-5 items-center">
+                    <h3 class="text-2xl sm:text-4xl uppercase text-pmblue"><span class="font-black">Our Services</span>
+                    </h3>
+                </div>
+
+                <ul
+                    class="flex flex-col gap-4 sm:gap-8 ms-5 justify-center items-center sm:justify-start sm:items-start flex-1 mt-10 xl:text-2xl">
+                    <li class="flex flex-row gap-4 items-center justify-center">
+                        <span>
+                            <svg width="23" height="23" viewBox="0 0 23 23" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M21.2214 10.6046V11.5246C21.2202 13.6811 20.5219 15.7793 19.2308 17.5065C17.9396 19.2336 16.1247 20.4971 14.0568 21.1085C11.9889 21.72 9.7787 21.6465 7.75591 20.8992C5.73312 20.1519 4.00609 18.7707 2.8324 16.9617C1.6587 15.1527 1.10123 13.0127 1.24311 10.861C1.385 8.70921 2.21864 6.66097 3.61972 5.02172C5.02079 3.38246 6.91422 2.24003 9.01762 1.76479C11.121 1.28955 13.3217 1.50698 15.2914 2.38465"
+                                    stroke="#0060BF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                <path d="M21.2214 3.52466L11.2214 13.5347L8.22144 10.5347" stroke="#0060BF"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </span>
+                        <p>Design and Validation Consultancy</p>
+                    </li>
+                    <li class="flex flex-row gap-4 items-center justify-center">
+                        <span>
+                            <svg width="23" height="23" viewBox="0 0 23 23" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M21.2214 10.6046V11.5246C21.2202 13.6811 20.5219 15.7793 19.2308 17.5065C17.9396 19.2336 16.1247 20.4971 14.0568 21.1085C11.9889 21.72 9.7787 21.6465 7.75591 20.8992C5.73312 20.1519 4.00609 18.7707 2.8324 16.9617C1.6587 15.1527 1.10123 13.0127 1.24311 10.861C1.385 8.70921 2.21864 6.66097 3.61972 5.02172C5.02079 3.38246 6.91422 2.24003 9.01762 1.76479C11.121 1.28955 13.3217 1.50698 15.2914 2.38465"
+                                    stroke="#0060BF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                <path d="M21.2214 3.52466L11.2214 13.5347L8.22144 10.5347" stroke="#0060BF"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </span>
+                        <p>Solution Design and Strategy Raodmap</p>
+                    </li>
+                    <li class="flex flex-row gap-4 items-center justify-center">
+                        <span>
+                            <svg width="23" height="23" viewBox="0 0 23 23" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M21.2214 10.6046V11.5246C21.2202 13.6811 20.5219 15.7793 19.2308 17.5065C17.9396 19.2336 16.1247 20.4971 14.0568 21.1085C11.9889 21.72 9.7787 21.6465 7.75591 20.8992C5.73312 20.1519 4.00609 18.7707 2.8324 16.9617C1.6587 15.1527 1.10123 13.0127 1.24311 10.861C1.385 8.70921 2.21864 6.66097 3.61972 5.02172C5.02079 3.38246 6.91422 2.24003 9.01762 1.76479C11.121 1.28955 13.3217 1.50698 15.2914 2.38465"
+                                    stroke="#0060BF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                <path d="M21.2214 3.52466L11.2214 13.5347L8.22144 10.5347" stroke="#0060BF"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </span>
+                        <p>Operation and Maintainance Support</p>
+                    </li>
+                    <li class="flex flex-row gap-4 items-center justify-center">
+                        <span>
+                            <svg width="23" height="23" viewBox="0 0 23 23" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M21.2214 10.6046V11.5246C21.2202 13.6811 20.5219 15.7793 19.2308 17.5065C17.9396 19.2336 16.1247 20.4971 14.0568 21.1085C11.9889 21.72 9.7787 21.6465 7.75591 20.8992C5.73312 20.1519 4.00609 18.7707 2.8324 16.9617C1.6587 15.1527 1.10123 13.0127 1.24311 10.861C1.385 8.70921 2.21864 6.66097 3.61972 5.02172C5.02079 3.38246 6.91422 2.24003 9.01762 1.76479C11.121 1.28955 13.3217 1.50698 15.2914 2.38465"
+                                    stroke="#0060BF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                <path d="M21.2214 3.52466L11.2214 13.5347L8.22144 10.5347" stroke="#0060BF"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </span>
+                        <p>Turn-key Project Delivery</p>
+                    </li>
+                    <li class="flex flex-row gap-4 items-center justify-center">
+                        <span>
+                            <svg width="23" height="23" viewBox="0 0 23 23" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M21.2214 10.6046V11.5246C21.2202 13.6811 20.5219 15.7793 19.2308 17.5065C17.9396 19.2336 16.1247 20.4971 14.0568 21.1085C11.9889 21.72 9.7787 21.6465 7.75591 20.8992C5.73312 20.1519 4.00609 18.7707 2.8324 16.9617C1.6587 15.1527 1.10123 13.0127 1.24311 10.861C1.385 8.70921 2.21864 6.66097 3.61972 5.02172C5.02079 3.38246 6.91422 2.24003 9.01762 1.76479C11.121 1.28955 13.3217 1.50698 15.2914 2.38465"
+                                    stroke="#0060BF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                <path d="M21.2214 3.52466L11.2214 13.5347L8.22144 10.5347" stroke="#0060BF"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </span>
+                        <p>Quality/Quantity Survey and Audits</p>
+                    </li>
+                </ul>
+            </div>
+            <div class="px-10">
+                <img src="resources/Services.png" class="max-w-[350px] xl:max-w-[600px]" alt="Others">
+            </div>
+        </div>
+    </section>
 
     <!-- Technology -->
-    <section class="mt-24">
+    <section>
         <div class="container mx-auto text-center sm:text-left">
             <div>
                 <p class="text-xs sm:text-sm opacity-50">- AVANT DOMAIN EXPERTISE -</p>
@@ -227,7 +328,7 @@
                 </p>
             </div>
         </div>
-        <div class="tab-section w-full mt-10">
+        <div class="tab-section w-full mt-10 text-sm sm:text-base">
             <div class="flex flex-wrap gap-1">
                 <button class="p-4 text-neutral-700 bg-pmblue/20 flex-grow w-80 hover:bg-pmblue/30 focus:ring-4"
                     data-tab-target="#tab1">Wildlife Security & Tracking Solutions</button>
@@ -273,9 +374,10 @@
     </section>
 
     <!-- Architecture and Finishing Services -->
-    <section class="mt-24 relative">
-        <img src="resources/AFS/Fl1.png" class="absolute -z-10 -top-10 -left-6" alt="False Ceiling">
-        <div class="container mx-auto ms-32">
+    <section class="mt-24 relative w-full overflow-hidden pb-8">
+        <img src="resources/AFS/Fl1.png" class="hidden lg:block lg:absolute lg:-z-10 lg:-top-10 lg:-left-10 2xl:-left-6"
+            alt="False Ceiling">
+        <div class="container mx-auto px-10 lg:px-0 lg:ms-28 2xl:ms-32">
             <div class="text-center sm:text-left">
                 <div>
                     <p class="text-xs sm:text-sm opacity-50">- ALSO -</p>
@@ -286,7 +388,7 @@
                 </div>
             </div>
             <div class="mt-10">
-                <ul class="list-disc ms-5 flex flex-col gap-4">
+                <ul class="list-disc text-sm sm:text-base sm:ms-5 sm:flex sm:flex-col sm:gap-4">
                     <li>Supply of all forms and finishes of granite and Marble Pan India </li>
                     <li>Exterior and Interior Tiling and Stone works </li>
                     <li>External Hardscape , Softscape and Landscape finishing </li>
@@ -295,7 +397,9 @@
                 </ul>
             </div>
         </div>
-        <img src="resources/AFS/Furniture.png" class="absolute -z-10 -top-10 right-10" alt="Furniture">
+        <img src="resources/AFS/Furniture.png"
+            class="w-10/12 mx-auto mt-10 lg:mt-0 lg:w-auto lg:block lg:absolute lg:-z-10 lg:-top-10 lg:-right-80 xl:-right-20 2xl:right-10"
+            alt="Furniture">
     </section>
 
     <!-- Clients -->
@@ -382,7 +486,7 @@
                 </div>
             </div>
             <div
-                class="grid grid-cols-1 mt-5 p-5 gap-10 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-1 2xl:grid-cols-2 items-start">
+                class="grid grid-cols-1 mt-5 p-5 gap-10 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-1 2xl:grid-cols-2 items-start text-sm sm:text-base">
                 <div class="flex flex-row gap-5 items-center justify-start">
                     <span>
                         <svg width="21" height="25" viewBox="0 0 21 25" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -527,12 +631,12 @@
         </div>
     </section>
 
-    <footer class="bg-neutral-800 text-neutral-400 p-5 pt-20 pb-0">
+    <footer class="bg-neutral-800 text-neutral-400 p-5 pt-20 pb-0  text-center xss:text-left">
         <div class="container mx-auto flex flex-col gap-10 md:flex-row md:justify-between">
-            <div class="flex justify-center items-center md:justify-start">
+            <a href="/" class="flex justify-center items-center md:justify-start">
                 <img src="resources/Logo.png" width="200px" class="grayscale brightness-110 object-fit" alt="AvantLogo">
-            </div>
-            <div class="grid grid-cols-3 gap-10 lg:gap-20 self-center xl:me-20">
+            </a>
+            <div class="grid grid-cols-1 px-10 xss:px-0 xss:grid-cols-3 gap-10 lg:gap-20 self-center xl:me-20">
                 <div>
                     <p class="font-bold mb-3 text-lg">Product</p>
                     <ul class="opacity-70 flex flex-col gap-2">
@@ -574,8 +678,6 @@
             <p class="opacity-50">Designed & Developed by Drubajyoti Debnath</p>
         </div>
     </footer>
-
-
 
     <script>
         document.addEventListener("DOMContentLoaded", async () => {
